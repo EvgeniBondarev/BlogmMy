@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE>
+<html >
+<head>
+	<title>Мой блог</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="{% static 'css/style.css'%}" type="text/css" media="all" />
+
+	<link rel="shortcut icon" href="css/images/favicon.ico" />
+
+</head>
+<body>
+<div class="shell">
+	<div class="border">
+
+		<div id="navigation">
+			<ul>
+			    <li><a href="/" class="active">Главная</a></li>
+			    <li><a href="/admin">Написать пост</a></li>
+			    
+			</ul>
+		</div>
+
+		<div id="main">
+			<div id="content" class="left">
+				
+				<div class="projects">
+					<h3>Посты</h3>
+					{% for post in post_list %}
+					<div class="item">
+						<div class="image left">
+							<a href="{{post.img.url}}"><img src="{{post.img.url}}" alt="" width="200px" height="170px" /></a>
+						</div>
+						<div class="text left">
+							<h4><a href="{{ post.id }}">{{post.title}}</a></h4>
+							<p>{{post.content|truncatewords:70|safe }}</p>
+							<p class="date">Автор:  {{post.author}}<br>{{post.date}}</p>
+						</div>
+						<div class="cl">&nbsp;</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+			
+			<div class="cl">&nbsp;</div>
+		</div>
+		
+
+	</div>
+	
+	<div id="footer">
+		<p class="copy right">Copyright &copy;  2022 </p>
+	</div>
+</div>
+</body>
+</html>
